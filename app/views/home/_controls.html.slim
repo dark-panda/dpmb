@@ -1,0 +1,11 @@
+
+section.top-bar-section
+  ul.left
+    - unless path_is_root?
+      li= link_to_up
+
+    - if path_contains_files?
+      li[data-d-control="select-all"]= link_to_void('All')
+      li[data-d-control="select-none"]= link_to_void('None')
+      li[data-d-control="download"]= submit_tag('Download', class: 'button')
+

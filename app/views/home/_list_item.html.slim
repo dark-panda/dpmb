@@ -1,0 +1,21 @@
+
+.d-list-item.d-full-width.row[class=cycle('d-odd', 'd-even')]
+  .d-name.small-8.columns
+    - if path.file?
+      = check_box_tag('files[]', public_path(path))
+
+    = public_link_to(path)
+
+    - if $SITE_SETTINGS.site.details_enabled
+      - if path.file?
+        span.d-toggle-file-details
+          = link_to_void('ℹ')
+
+        .d-file-details
+          ul
+            - FileMetaDecorator.decorate(path.file_meta).each do |k, v|
+              li= "#{k}: #{v}"
+
+  - if $SITE_SETTINGS.site.html5_player_enabled && path.file?
+    = render 'html5_player', path: path
+

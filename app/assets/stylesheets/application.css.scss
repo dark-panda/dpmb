@@ -1,0 +1,74 @@
+
+@import "video-js/video-js";
+@import "foundation_and_overrides";
+
+body {
+  width: 100%;
+}
+
+#d-top-bar {
+  color: white;
+
+  nav {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  #d-options {
+    label {
+      color: white;
+    }
+  }
+}
+
+#d-page-title {
+  color: white;
+}
+
+#d-list {
+  .d-list-item {
+    padding: 1.25rem;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 2rem;
+
+    &.d-odd {
+      background-color: #dddddd;
+    }
+
+    &.d-even {
+
+    }
+
+    input[type=checkbox] {
+      margin: 0.25rem;
+    }
+
+    audio {
+      line-height: 3rem;
+    }
+
+    .d-toggle-file-details {
+      margin-left: 0.5rem;
+    }
+
+    .d-file-details {
+      display: none;
+
+      ul {
+        list-style-type: none;
+
+        li {
+          font-size: 0.8rem;
+          color: #aaaaaa;
+          padding-right: 15px;
+        }
+      }
+    }
+  }
+}
+
+.d-full-width {
+  width: 100%;
+  max-width: 100%;
+}

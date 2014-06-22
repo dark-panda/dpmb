@@ -1,0 +1,8 @@
+
+.d-player.small-4.columns
+  - case path.file_type
+  - when 'audio/mpeg', 'audio/mp4'
+    = render 'html5_player/audio', path: path
+  - when 'video/mp4'
+    = render 'html5_player/video', path: path
+

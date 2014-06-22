@@ -1,0 +1,23 @@
+---
+site:
+  title: DPMB
+  html5_player_enabled: true
+  details_enabled: true
+
+library:
+  path: "/Users/jay/Music/iTunes/iTunes Music"
+
+  include_paths:
+    - Movies
+    - Music
+    - "TV Shows"
+  include_file_types:
+    - "mp3"
+    - "m4a"
+    - "m4v"
+    - "mp4"
+    - "pdf"
+
+  exclude_paths:
+  exclude_file_types:
+
