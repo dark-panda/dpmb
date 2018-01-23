@@ -7,7 +7,7 @@ class HomeController < ApplicationController
       if params[:files].length > 1
         zip = $LIBRARY.zip(params[:files])
         path = params[:path].split('/').last
-        send_data(zip.read, filename: "#{path}.zip", type: Mime::ZIP)
+        send_data(zip.read, filename: "#{path}.zip", type: Mime[:zip])
       elsif params[:files].length == 1
         send_single_file(params[:files].first)
       end
@@ -17,10 +17,11 @@ class HomeController < ApplicationController
   end
 
   private
+
     def send_single_file(path)
-      if $LIBRARY.public_file?(path)
-        send_file($LIBRARY.local_path(path), type: file_type(path))
-      end
+      return unless $LIBRARY.public_file?(path)
+
+      file = $LIBRARY.file(path)
+      send_file($LIBRARY.local_path(path), type: file.file_type)
     end
 end
-

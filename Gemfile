@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.4'
+gem 'rails', '5.1.4'
 
 gem 'draper'
 gem 'foundation'
@@ -8,10 +8,10 @@ gem 'foundation-rails'
 gem 'hashie'
 gem 'ice_nine'
 gem 'jbuilder'
+gem 'listen'
+gem 'mediainfo'
 gem 'memoist'
 gem 'mimemagic'
-gem 'mediainfo'
-gem 'quiet_assets'
 gem 'rubyzip', require: 'zip'
 
 group :assets do
@@ -21,7 +21,7 @@ group :assets do
   gem 'sass'
   gem 'sass-rails'
   gem 'slim_assets'
-  gem 'uglifier', :require => false
+  gem 'uglifier', require: false
 end
 
 group :development do
@@ -42,4 +42,3 @@ group :profiling do
   gem 'active-profiling'
   gem 'ruby-prof'
 end
-

@@ -6,8 +6,12 @@ body {
   width: 100%;
 }
 
+#d-controls {
+  background-color: white;
+}
+
 #d-top-bar {
-  color: white;
+  background-color: white;
 
   nav {
     padding-left: 1rem;
@@ -18,6 +22,12 @@ body {
     label {
       color: white;
     }
+  }
+
+  margin-top: 0 !important;
+
+  ul {
+    list-style-type: none;
   }
 }
 

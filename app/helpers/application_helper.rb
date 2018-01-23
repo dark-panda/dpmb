@@ -40,9 +40,7 @@ module ApplicationHelper
   end
 
   memoize def path_contains_files?
-    !!current_glob.detect do |path|
-      path.file?
-    end
+    !!current_glob.detect(&:file?)
   end
 
   memoize def path_is_root?
@@ -54,11 +52,8 @@ module ApplicationHelper
   end
 
   memoize def link_to_up(*args)
-    unless path_is_root?
-      up = "/#{File.dirname(params[:path])}"
-    end
+    up = "/#{File.dirname(params[:path])}" unless path_is_root?
 
     link_to('↟ Up', up, *args)
   end
 end
-

@@ -5,17 +5,13 @@ class Dpmb::Library
   class Settings < Hashie::Mash
     extend Memoist
 
-    %w{
-      include_paths
-      exclude_paths
-      include_file_types
-      exclude_file_types
-    }.each do |method|
-      class_eval(<<-RUBY, __FILE__, __LINE__ + 1)
-        memoize def #{method}
-          self[:#{method}] || []
-        end
-      RUBY
+    def initialize(*)
+      super
+
+      self.include_paths ||= []
+      self.exclude_paths ||= []
+      self.include_file_types ||= []
+      self.exclude_file_types ||= []
     end
   end
 
@@ -97,30 +93,44 @@ class Dpmb::Library
     stream
   end
 
+  def file(path)
+    realpath = File.realpath(local_path(path))
+
+    return nil if realpath !~ local_path_regexp
+
+    collect_files(realpath)[0]
+  end
+
   def glob(path)
     realpath = File.realpath(local_path(path))
 
     return [] if realpath !~ local_path_regexp
 
-    Dir.glob(File.join(realpath, "*")).select { |path|
+    collect_files(realpath, '*')
+  end
+
+  private
+
+    def collect_files(*path_components)
+      Dir.glob(File.join(*path_components)).select { |path|
+        check_real_path(path)
+      }.collect { |path|
+        if file?(path)
+          Dpmb::File.new(path)
+        else
+          Dpmb::Path.new(path)
+        end
+      }
+    end
+
+    def check_real_path(path)
       retval = false
 
       if path_included?(path) && !path_excluded?(path)
         retval = true
-
-        if file?(path)
-          retval = file_type_included?(path) && !file_type_excluded?(path)
-        end
+        retval = file_type_included?(path) && !file_type_excluded?(path) if file?(path)
       end
 
       retval
-    }.collect { |path|
-      if file?(path)
-        Dpmb::File.new(path)
-      else
-        Dpmb::Path.new(path)
-      end
-    }
-  end
+    end
 end
-

@@ -30,3 +30,5 @@
     $(this).next('.d-file-details').slideToggle();
   });
 });
+
+$(function(){ $(document).foundation(); });

@@ -15,12 +15,12 @@ class Dpmb::File < Dpmb::Path
       retval[:size] = file_size
       retval[:type] = file_type
 
-      if exist?
-        meta = Mediainfo.new(path)
-        Mediainfo.supported_attributes.each do |attribute|
-          value = meta.send(attribute)
-          retval[attribute] = value if value.present?
-        end
+      next unless exist?
+
+      meta = Mediainfo.new(path)
+      Mediainfo.supported_attributes.each do |attribute|
+        value = meta.send(attribute) rescue nil
+        retval[attribute] = value if value.present?
       end
     end
   end
