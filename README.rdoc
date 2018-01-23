@@ -1,28 +1,11 @@
-== README
+= DarkPandaMediaBrowser
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This little Rails project is just a simple media browser. If you want to use
+it for anything serious, you might be nuts, but if you want a simple media
+browser you can start with a couple of simple Rails commands, then maybe this
+is the media browser for you. I would definitely not recommend using it in
+a public context, but as a private media browser, it'll do in a pinch.
 
-Things you may want to cover:
+== License
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+See the `MIT-LICENSE` file for details.
